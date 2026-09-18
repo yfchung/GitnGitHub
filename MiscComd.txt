@@ -1,0 +1,42 @@
+# This text file contains miscellaneous commands and notes for the using git and github
+
+# On Terminal (Git Bash)
+## To check your current git version
+git --version
+
+## To check your current git configuration
+git config --list
+
+## To check the path of the git executable
+which git
+
+## To update your git version
+### On Windows
+git update-git-for-windows
+
+### On Mac
+brew upgrade git
+
+
+# R in RStudio or VS Code
+
+## To check your current git version
+system("git --version")
+
+## To check your current git configuration
+system("git config --list")
+
+## To create a personal access token for GitHub (for use with HTTPS)
+usethis::create_github_token()
+
+## To set your personal access token for GitHub (for use with HTTPS)
+gitcreds::gitcreds_set()
+
+## To create a new project from a GitHub repository
+### usethis::create_from_github(
+###    "https://github.com/YOU/YOUR_REPO.git", 
+###    destdir = "~/path/to/where/you/want/the/local/repo/",
+###    fork = FALSE)
+usethis::create_from_github()
+
+

@@ -4,24 +4,58 @@ format:
   gfm: default
 ---
 
-## Why use version control?
+## What is Version Control and Git ?
 
-- Track what changed, when, and why.
-- Safely experiment with code and documents.
-- Collaborate without emailing file copies.
-- Connect local work to GitHub for backup, review, and sharing.
+- Git is a version control system
+- “Track Changes” on steroids
+- Ensuring reproducibility
+- Ease of working collaboratively
+  - With peers
+  - With past and future self
+
+## How to do Version Control?
+
+- Use a hosting service like **GitHub**, Bitbucket, and GitLab 
+- Think of these as OneDrive, Google Drive or DropBox
+- Good even for private solo projects
+  - Track changes
+  - Revert when you screw up
+  - Publication ready
+  - Personal website or ShinyApp
+
+## The Pain! Prep work
+
+- Create an account
+  - Types of Account
+- Check and install Git
+  - What about Updates (not necessary now)
+- Get your local Git to talk to Github
+
+- A **Git repository** (commonly called a "repo") is a digital container or project folder that tracks and stores the complete history of changes made to files over time.
+
+## Make the **local** and the **remote** talk
+
+There are a few ways to
+Method 1: GitHub setting 
+HTTPS key
+Method 2: Rstudio “usethis” package 
+HTTPS key
+Method 3: Git Bash / Terminal
+SSH key
+
+
 
 ## Core workflow in RStudio (main focus)
 
-1. **Create or open an RStudio Project** linked to a Git repository.
-2. **Edit files** in your project.
-3. Use the **Git tab** to:
-   - review changes,
-   - stage files,
-   - commit with a clear message.
-4. **Pull** before you push when collaborating.
-5. **Push** commits to GitHub.
-6. Open a **Pull Request** on GitHub for discussion/review.
+1.  **Create or open an RStudio Project** linked to a Git repository.
+2.  **Edit files** in your project.
+3.  Use the **Git tab** to:
+    - review changes,
+    - stage files,
+    - commit with a clear message.
+4.  **Pull** before you push when collaborating.
+5.  **Push** commits to GitHub.
+6.  Open a **Pull Request** on GitHub for discussion/review.
 
 ### Typical RStudio cycle
 
@@ -35,7 +69,7 @@ format:
 
 - **VS Code**: Use Source Control panel for stage/commit/pull/push; integrated terminal for Git commands.
 - **GitHub Desktop**: Use GUI for commit/sync/branching; open repository in editor for coding.
-- The logic is still the same: **edit -> stage -> commit -> pull -> push -> PR**.
+- The logic is still the same: **edit -\> stage -\> commit -\> pull -\> push -\> PR**.
 
 ## Using GitHub Copilot with Git/GitHub workflows
 
@@ -48,7 +82,7 @@ format:
 
 ### Terminal (Git Bash)
 
-```bash
+```{bash}
 # Check current git version
 git --version
 
@@ -74,7 +108,7 @@ git push
 
 ### R (RStudio or VS Code)
 
-```r
+``` r
 # Check current git version
 system("git --version")
 
