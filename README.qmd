@@ -1,4 +1,8 @@
-# Git, GitHub, and Version Control Quick Tutorial
+---
+title: "Git, GitHub, and Version Control Quick Tutorial"
+format:
+  gfm: default
+---
 
 ## Why use version control?
 
