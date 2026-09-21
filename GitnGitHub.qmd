@@ -76,15 +76,14 @@ execute:
 
 ## Make the **local** and the **remote** talk
 
-There are a few ways to authenticate your local Git with GitHub (i.e., to allow your computer to communicate with your GitHub account):
+There are a few ways to authenticate your local Git with GitHub (i.e., to allow your computer to communicate with your GitHub account). Here I will only cover methods using HTTPS as Personal Access Tokens (PATs). Alternatively, you can also use SSH keys but I found that to be more complicated and less user-friendly for beginners.
 
 - Method 1: Generating a personal access token through GitHub settings
-  - Method 1a: Using HTTPS with personal access token
   - At GitHub.com, go to Settings \> Developer settings \> Personal access tokens \> Tokens (classic) \> Generate new token.
   - **Keep this page open** as you will need to copy the token to your clipboard.
   - **Important**: Never share your personal access token with anyone else.
   - Follow the R code below
-- Method 2: Using the Rstudio “usethis” package
+- Method 2: Generating a personal access token using the “usethis” package in R
   - Follow the R code below
 - Method 3: Using Git Bash / Terminal with SSH keys (not covered here)
 
@@ -95,7 +94,7 @@ if(!requireNamespace(c("usethis", "gitcreds"))){
 library(usethis)
 library(gitcreds)
 
-# If you are using Method 1a, you can skip this usethis::create_github_token() step
+# If you are using Method 1, you can skip this usethis::create_github_token() step
 # Generate a personal access token (PAT) for GitHub using the usethis package
 usethis::create_github_token()
 
@@ -125,37 +124,46 @@ usethis::create_from_github(
 
 3.  **Make changes** to your files in RStudio
 4.  **Stage and commit** your changes in RStudio
+    - *Stage*: Select the files you want to include in your commit
+    - *Commit*: Write a concise message describing your changes and commit them to your local repository.
 5.  **Pull** any changes from the remote repository (if collaborating)
+    - *Pull*: Fetch and merge changes from the remote repository to your local repository. This ensures you have the latest version of the code before pushing your changes.
 6.  **Push** your changes to the remote repository on GitHub
+    - *Push*: Upload your committed changes from your local repository to the remote repository on GitHub.
+
+### Think of this as you are building a rocket
+Your **local repository** is your *base on Earth*, the **remote (GitHub) repository** is your *space station*. You start an almost empty frame on the **remote repository** (your *space station*). Then, you clone it to your **local repository** (your *base on Earth*). You put together the rocket (your code), and when you are ready, you put it on the *launch pad* (**stage**), fuel it up (**commit**), and *launch it* into the space station (**push**). If you are collaborating with others, others may have already launched their rockets into the space station (**push** their changes to the **remote repository**). You need get the latest version of the rocket (**pull**) before you work on the next version of the rocket (your code) again. If not, you may end up with a rocket that does not fit into the space station (**merge conflicts**). 
+
 
 ## Typical RStudio cycle
 
-- Make a small change.
-- Stage only relevant files.
+- Start with a new repository on GitHub.
+- Clone it to your local machine. (make sure you have the correct permissions to push to the repository)
+- Make change, new files, or delete files.
+- Stage relevant files.
 - Commit with a concise message.
-- Pull (if needed), then push.
-- Repeat in small, understandable steps.
+- Push it to GitHub.
+- *If collaborating*, pull any changes from the remote repository before starting your next round of edits.
 
 ## Same workflow in VS Code and GitHub Desktop (brief)
 
 - **VS Code**: Use Source Control panel for stage/commit/pull/push; integrated terminal for Git commands.
 - **GitHub Desktop**: Use GUI for commit/sync/branching; open repository in editor for coding.
-- The logic is still the same: **edit -\> stage -\> commit -\> pull -\> push -\> PR**.
+- The logic is still the same: **Start a repo \> clone it \> make changes \> stage \> commit \> push**
 
 ## Using GitHub Copilot with Git/GitHub workflows
 
 - Ask Copilot to draft functions, tests, or documentation from comments/prompts.
 - Use Copilot Chat to explain code, suggest refactors, or generate commit message drafts.
-- Keep commits small so Copilot-assisted changes are easy to review.
-- Always review generated code before committing.
+- **Always review generated code!!!**
 
 ## Quick best practices
 
 - Commit often with meaningful messages.
 - Keep one logical change per commit.
-- Pull before push when collaborating.
-- Resolve conflicts early.
+- Make sure to pull before starting new work.
 - Use branches for new features or experiments.
+- Resolve conflicts early.
 
 ## Useful coding and GitHub resources
 
@@ -205,13 +213,19 @@ which git
 # Update git on Windows
 git update-git-for-windows
 
-# Update git on macOS (Homebrew)
+# Update git on macOS (Not tested, use with caution)
+brew update 
 brew upgrade git
 
 # Useful daily workflow
+## Get status of your local repository
 git status
+## Stage files for commit
 git add <file>
+## Commit staged files with a message
 git commit -m "your message"
+## Pull changes from the remote repository and rebase
 git pull --rebase
+## brew update && brew upgrade git
 git push
 ```

@@ -1,6 +1,6 @@
 # Git, GitHub, and Version Control Quick Tutorial
 Yi Fei Chung
-2026-09-18
+2026-09-21
 
 ## What is Version Control and Git ?
 
@@ -23,33 +23,78 @@ Yi Fei Chung
 
 ## The Pain! Prep work
 
-- Create an account
+- Create a [GitHub account](https://github.com/) if you do not already
+  have one.
+  - Choose a reasonably professional and recognisable username, since it
+    may appear on your coursework, collaborations, and portfolio.
+- *Optional*: Apply for [GitHub Education
+  benefits](https://education.github.com/pack)
+  1.  Add and verify your university email address on your GitHub
+      account in **Settings \> Emails**.
+  2.  Go to your [GitHub Education benefits
+      settings](https://github.com/settings/education/benefits).
+  3.  Under **GitHub Education**, click **Start an application**.
+  4.  Complete and submit the application.
+- Check whether Git is installed
+- Updates (not necessary now)
+- Get your local Git to talk to Github *Note*: A **Git repository**
+  (commonly called a “repo”) is a digital container or project folder
+  that tracks and stores the complete history of changes made to files
+  over time.
 
-  - Types of Account
+### Check whether Git is installed.
 
-- Check and install Git
+#### macOS
 
-  - What about Updates (not necessary now)
+1.  Open **Terminal** by searching for “Terminal” and pressing Return.
 
-- Get your local Git to talk to Github
+2.  Type:
 
-- A **Git repository** (commonly called a “repo”) is a digital container
-  or project folder that tracks and stores the complete history of
-  changes made to files over time.
+    ``` bash
+    git --version
+    ## if you see output similar to `git version 2.39.5 (Apple Git-154)`, Git is installed and ready to use.
+    ```
+
+3.  If Git is not installed, macOS may offer to install the Command Line
+    Developer Tools. Follow the prompt to install them.
+
+4.  Once installation is complete, run `git --version` again to check.
+
+#### Windows
+
+1.  Press the Windows key, type **CMD**, and open **Command Prompt**.
+
+2.  Type:
+
+    ``` bash
+    git --version
+    ## if you see output similar to `git version 2.50.1.windows.1`, Git is installed and ready to use.
+    ```
+
+3.  If Git is not installed, download [Git for
+    Windows](https://gitforwindows.org/).
+
+4.  Follow the installation instructions, then run `git --version` again
+    to check.
 
 ## Make the **local** and the **remote** talk
 
 There are a few ways to authenticate your local Git with GitHub (i.e.,
-to allow your computer to communicate with your GitHub account):
+to allow your computer to communicate with your GitHub account). Here I
+will only cover methods using HTTPS as Personal Access Tokens (PATs).
+Alternatively, you can also use SSH keys but I found that to be more
+complicated and less user-friendly for beginners.
 
 - Method 1: Generating a personal access token through GitHub settings
-  - Method 1a: Using HTTPS with personal access token
   - At GitHub.com, go to Settings \> Developer settings \> Personal
     access tokens \> Tokens (classic) \> Generate new token.
   - **Keep this page open** as you will need to copy the token to your
     clipboard.
-  - Follow the r code below
-- Method 2: Using the Rstudio “usethis” package
+  - **Important**: Never share your personal access token with anyone
+    else.
+  - Follow the R code below
+- Method 2: Generating a personal access token using the “usethis”
+  package in R
   - Follow the R code below
 - Method 3: Using Git Bash / Terminal with SSH keys (not covered here)
 
@@ -59,10 +104,9 @@ if(!requireNamespace(c("usethis", "gitcreds"))){
 }
 library(usethis)
 library(gitcreds)
-## Start with Method 2:
 
-# generate a personal access token (PAT) for GitHub using the usethis package
-# This is the same as going to GitHub.com and generating a token manually in 1a
+# If you are using Method 1, you can skip this usethis::create_github_token() step
+# Generate a personal access token (PAT) for GitHub using the usethis package
 usethis::create_github_token()
 
 ## Store the personal access token (PAT) 
@@ -73,7 +117,8 @@ gitcreds::gitcreds_set()
 ## Then follow the instructions to paste your personal access token (PAT) into the prompt that appears in RStudio or your terminal. This will securely store your credentials for future Git operations.
 ```
 
-\*\* GOOD NEWS \*\*: You only need to do this once per computer!!
+**GOOD NEWS** : You only need to do this once (or once in a while) per
+computer!!
 
 ## Core workflow in RStudio (main focus)
 
@@ -91,16 +136,43 @@ usethis::create_from_github(
 
 3.  **Make changes** to your files in RStudio
 4.  **Stage and commit** your changes in RStudio
+    - *Stage*: Select the files you want to include in your commit
+    - *Commit*: Write a concise message describing your changes and
+      commit them to your local repository.
 5.  **Pull** any changes from the remote repository (if collaborating)
+    - *Pull*: Fetch and merge changes from the remote repository to your
+      local repository. This ensures you have the latest version of the
+      code before pushing your changes.
 6.  **Push** your changes to the remote repository on GitHub
+    - *Push*: Upload your committed changes from your local repository
+      to the remote repository on GitHub.
+
+### Think of this as you are building a rocket
+
+Your **local repository** is your *base on Earth*, the **remote (GitHub)
+repository** is your *space station*. You start an almost empty frame on
+the **remote repository** (your *space station*). Then, you clone it to
+your **local repository** (your *base on Earth*). You put together the
+rocket (your code), and when you are ready, you put it on the *launch
+pad* (**stage**), fuel it up (**commit**), and *launch it* into the
+space station (**push**). If you are collaborating with others, others
+may have already launched their rockets into the space station (**push**
+their changes to the **remote repository**). You need get the latest
+version of the rocket (**pull**) before you work on the next version of
+the rocket (your code) again. If not, you may end up with a rocket that
+does not fit into the space station (**merge conflicts**).
 
 ## Typical RStudio cycle
 
-- Make a small change.
-- Stage only relevant files.
+- Start with a new repository on GitHub.
+- Clone it to your local machine. (make sure you have the correct
+  permissions to push to the repository)
+- Make change, new files, or delete files.
+- Stage relevant files.
 - Commit with a concise message.
-- Pull (if needed), then push.
-- Repeat in small, understandable steps.
+- Push it to GitHub.
+- *If collaborating*, pull any changes from the remote repository before
+  starting your next round of edits.
 
 ## Same workflow in VS Code and GitHub Desktop (brief)
 
@@ -108,8 +180,8 @@ usethis::create_from_github(
   integrated terminal for Git commands.
 - **GitHub Desktop**: Use GUI for commit/sync/branching; open repository
   in editor for coding.
-- The logic is still the same: **edit -\> stage -\> commit -\> pull -\>
-  push -\> PR**.
+- The logic is still the same: **Start a repo \> clone it \> make
+  changes \> stage \> commit \> push**
 
 ## Using GitHub Copilot with Git/GitHub workflows
 
@@ -117,36 +189,26 @@ usethis::create_from_github(
   comments/prompts.
 - Use Copilot Chat to explain code, suggest refactors, or generate
   commit message drafts.
-- Keep commits small so Copilot-assisted changes are easy to review.
-- Always review generated code before committing.
+- **Always review generated code!!!**
+
+## Quick best practices
+
+- Commit often with meaningful messages.
+- Keep one logical change per commit.
+- Make sure to pull before starting new work.
+- Use branches for new features or experiments.
+- Resolve conflicts early.
+
+## Useful coding and GitHub resources
+
+- [CBCS Coding Club](https://cbcs-hack.github.io/) by CBCS Coding Club
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/) by
+  Jenny Bryan
+- [R for Data Science 2nd Edition](https://r4ds.hadley.nz/) by Hadley
+  Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund
+- [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
 
 ## Common commands
-
-### Terminal (Git Bash)
-
-``` bash
-# Check current git version
-git --version
-
-# List current git configuration
-git config --list
-
-# Show path to git executable
-which git
-
-# Update git on Windows
-git update-git-for-windows
-
-# Update git on macOS (Homebrew)
-brew upgrade git
-
-# Useful daily workflow
-git status
-git add <file>
-git commit -m "your message"
-git pull --rebase
-git push
-```
 
 ### R (RStudio or VS Code)
 
@@ -172,10 +234,34 @@ usethis::create_from_github(
 )
 ```
 
-## Quick best practices
+### Terminal (Git Bash)
 
-- Commit often with meaningful messages.
-- Keep one logical change per commit.
-- Pull before push when collaborating.
-- Resolve conflicts early.
-- Use branches for new features or experiments.
+``` bash
+# Check current git version
+git --version
+
+# List current git configuration
+git config --list
+
+# Show path to git executable
+which git
+
+# Update git on Windows
+git update-git-for-windows
+
+# Update git on macOS (Not tested, use with caution)
+brew update 
+brew upgrade git
+
+# Useful daily workflow
+## Get status of your local repository
+git status
+## Stage files for commit
+git add <file>
+## Commit staged files with a message
+git commit -m "your message"
+## Pull changes from the remote repository and rebase
+git pull --rebase
+## brew update && brew upgrade git
+git push
+```
