@@ -8,7 +8,6 @@ format:
 execute:
   eval: false
   echo: true
-
 ---
 
 ## What is Version Control and Git ?
@@ -22,7 +21,7 @@ execute:
 
 ## How to do Version Control?
 
-- Use a hosting service like **GitHub**, Bitbucket, and GitLab 
+- Use a hosting service like **GitHub**, Bitbucket, and GitLab
 - Think of these as OneDrive, Google Drive or DropBox
 - Good even for private solo projects
   - Track changes
@@ -32,13 +31,48 @@ execute:
 
 ## The Pain! Prep work
 
-- Create an account
-  - Types of Account
-- Check and install Git
-  - What about Updates (not necessary now)
-- Get your local Git to talk to Github
+- Create a [GitHub account](https://github.com/) if you do not already have one.
+  - Choose a reasonably professional and recognisable username, since it may appear on your coursework, collaborations, and portfolio.
+- *Optional*: Apply for [GitHub Education benefits](https://education.github.com/pack)
+  1.  Add and verify your university email address on your GitHub account in **Settings \> Emails**.
+  2.  Go to your [GitHub Education benefits settings](https://github.com/settings/education/benefits).
+  3.  Under **GitHub Education**, click **Start an application**.
+  4.  Complete and submit the application.
+- Check whether Git is installed
+- Updates (not necessary now)
+- Get your local Git to talk to Github *Note*: A **Git repository** (commonly called a "repo") is a digital container or project folder that tracks and stores the complete history of changes made to files over time.
 
-- A **Git repository** (commonly called a "repo") is a digital container or project folder that tracks and stores the complete history of changes made to files over time.
+### Check whether Git is installed.
+
+#### macOS
+
+1.  Open **Terminal** by searching for “Terminal” and pressing Return.
+
+2.  Type:
+
+    ```{bash}
+    git --version
+    ## if you see output similar to `git version 2.39.5 (Apple Git-154)`, Git is installed and ready to use.
+    ```
+
+3.  If Git is not installed, macOS may offer to install the Command Line Developer Tools. Follow the prompt to install them.
+
+4.  Once installation is complete, run `git --version` again to check.
+
+#### Windows
+
+1.  Press the Windows key, type **CMD**, and open **Command Prompt**.
+
+2.  Type:
+
+    ```{bash}
+    git --version
+    ## if you see output similar to `git version 2.50.1.windows.1`, Git is installed and ready to use.
+    ```
+
+3.  If Git is not installed, download [Git for Windows](https://gitforwindows.org/).
+
+4.  Follow the installation instructions, then run `git --version` again to check.
 
 ## Make the **local** and the **remote** talk
 
@@ -46,11 +80,12 @@ There are a few ways to authenticate your local Git with GitHub (i.e., to allow 
 
 - Method 1: Generating a personal access token through GitHub settings
   - Method 1a: Using HTTPS with personal access token
-  - At GitHub.com, go to Settings > Developer settings > Personal access tokens > Tokens (classic) > Generate new token.
+  - At GitHub.com, go to Settings \> Developer settings \> Personal access tokens \> Tokens (classic) \> Generate new token.
   - **Keep this page open** as you will need to copy the token to your clipboard.
-  - Follow the r code below
+  - **Important**: Never share your personal access token with anyone else.
+  - Follow the R code below
 - Method 2: Using the Rstudio “usethis” package
-  - Follow the R code below 
+  - Follow the R code below
 - Method 3: Using Git Bash / Terminal with SSH keys (not covered here)
 
 ```{r}
@@ -59,10 +94,9 @@ if(!requireNamespace(c("usethis", "gitcreds"))){
 }
 library(usethis)
 library(gitcreds)
-## Start with Method 2:
 
-# generate a personal access token (PAT) for GitHub using the usethis package
-# This is the same as going to GitHub.com and generating a token manually in 1a
+# If you are using Method 1a, you can skip this usethis::create_github_token() step
+# Generate a personal access token (PAT) for GitHub using the usethis package
 usethis::create_github_token()
 
 ## Store the personal access token (PAT) 
@@ -73,7 +107,7 @@ gitcreds::gitcreds_set()
 ## Then follow the instructions to paste your personal access token (PAT) into the prompt that appears in RStudio or your terminal. This will securely store your credentials for future Git operations.
 ```
 
-** GOOD NEWS **: You only need to do this once per computer!!
+**GOOD NEWS** : You only need to do this once (or once in a while) per computer!!
 
 ## Core workflow in RStudio (main focus)
 
@@ -93,7 +127,6 @@ usethis::create_from_github(
 4.  **Stage and commit** your changes in RStudio
 5.  **Pull** any changes from the remote repository (if collaborating)
 6.  **Push** your changes to the remote repository on GitHub
-
 
 ## Typical RStudio cycle
 
@@ -116,7 +149,46 @@ usethis::create_from_github(
 - Keep commits small so Copilot-assisted changes are easy to review.
 - Always review generated code before committing.
 
+## Quick best practices
+
+- Commit often with meaningful messages.
+- Keep one logical change per commit.
+- Pull before push when collaborating.
+- Resolve conflicts early.
+- Use branches for new features or experiments.
+
+## Useful coding and GitHub resources
+
+- [CBCS Coding Club](https://cbcs-hack.github.io/) by CBCS Coding Club
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan
+- [R for Data Science 2nd Edition](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund
+- [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
+
 ## Common commands
+
+### R (RStudio or VS Code)
+
+```{r}
+# Check current git version
+system("git --version")
+
+# List current git configuration
+system("git config --list")
+
+# Create a GitHub personal access token (HTTPS)
+usethis::create_github_token()
+
+# Store GitHub personal access token
+# (installs or updates credentials used by git)
+gitcreds::gitcreds_set()
+
+# Create local project from a GitHub repository
+usethis::create_from_github(
+  repo_spec = "https://github.com/YOU/YOUR_REPO.git",
+  destdir = "~/path/to/where/you/want/the/local/repo/",
+  fork = FALSE
+)
+```
 
 ### Terminal (Git Bash)
 
@@ -143,35 +215,3 @@ git commit -m "your message"
 git pull --rebase
 git push
 ```
-
-### R (RStudio or VS Code)
-
-``` {r}
-# Check current git version
-system("git --version")
-
-# List current git configuration
-system("git config --list")
-
-# Create a GitHub personal access token (HTTPS)
-usethis::create_github_token()
-
-# Store GitHub personal access token
-# (installs or updates credentials used by git)
-gitcreds::gitcreds_set()
-
-# Create local project from a GitHub repository
-usethis::create_from_github(
-  repo_spec = "https://github.com/YOU/YOUR_REPO.git",
-  destdir = "~/path/to/where/you/want/the/local/repo/",
-  fork = FALSE
-)
-```
-
-## Quick best practices
-
-- Commit often with meaningful messages.
-- Keep one logical change per commit.
-- Pull before push when collaborating.
-- Resolve conflicts early.
-- Use branches for new features or experiments.
