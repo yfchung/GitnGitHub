@@ -4,17 +4,20 @@ Yi Fei Chung
 
 ## Table of Contents
 
-[What is Version Control and Git ?](#what-is-version-control-and-git-)
-[How to do Version Control?](#how-to-do-version-control-) [The Pain!
-Prep work](#the-pain-prep-work) [Make the **local** and the **remote**
-talk](#make-the-local-and-the-remote-talk) [Core workflow in RStudio
-(main focus)](#core-workflow-in-rstudio-main-focus) [Typical RStudio
-cycle](#typical-rstudio-cycle) [Same workflow in VS Code and GitHub
-Desktop (brief)](#same-workflow-in-vs-code-and-github-desktop-brief)
+[What is Version Control and Git ?](#what-is-version-control-and-git-)  
+[How to do Version Control?](#how-to-do-version-control-)  
+[The Pain! Prep work](#the-pain-prep-work)  
+[Make the local and the remote
+talk](#make-the-local-and-the-remote-talk)  
+[Core workflow in RStudio](#core-workflow-in-rstudio)  
+[Typical RStudio cycle](#typical-rstudio-cycle)  
+[Same workflow in VS Code and GitHub Desktop
+(brief)](#same-workflow-in-vs-code-and-github-desktop-brief)  
 [Using GitHub Copilot with Git/GitHub
-workflows](#using-github-copilot-with-gitgithub-workflows) [Quick best
-practices](#quick-best-practices) [Useful coding and GitHub
-resources](#useful-coding-and-github-resources)
+workflows](#using-github-copilot-with-gitgithub-workflows)  
+[Quick best practices](#quick-best-practices)  
+[Useful coding and GitHub
+resources](#useful-coding-and-github-resources)  
 
 ## What is Version Control and Git ?
 
@@ -91,7 +94,7 @@ resources](#useful-coding-and-github-resources)
 4.  Follow the installation instructions, then run `git --version` again
     to check.
 
-## Make the **local** and the **remote** talk
+## Make the local and the remote talk
 
 There are a few ways to authenticate your local Git with GitHub (i.e.,
 to allow your computer to communicate with your GitHub account). Here I
@@ -135,7 +138,7 @@ gitcreds::gitcreds_set()
 **GOOD NEWS** : You only need to do this once (or once in a while) per
 computer!!
 
-## Core workflow in RStudio (main focus)
+## Core workflow in RStudio
 
 1.  **Create a new repository** in GitHub
 2.  **Clone the repository** to your local machine using RStudio
