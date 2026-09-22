@@ -1,6 +1,6 @@
 # Git, GitHub, and Version Control Quick Tutorial
 Yi Fei Chung
-2026-09-21
+2026-09-22
 
 ## What is Version Control and Git ?
 
@@ -86,8 +86,9 @@ Alternatively, you can also use SSH keys but I found that to be more
 complicated and less user-friendly for beginners.
 
 - Method 1: Generating a personal access token through GitHub settings
-  - At GitHub.com, go to Settings \> Developer settings \> Personal
-    access tokens \> Tokens (classic) \> Generate new token.
+  - At GitHub.com, go to **Settings \> Developer settings \> Personal
+    access tokens \> Tokens (classic) \> Generate new token**.
+  - Highly recommend to select `repo`, `workflow`, `gist`, and `user`.
   - **Keep this page open** as you will need to copy the token to your
     clipboard.
   - **Important**: Never share your personal access token with anyone
