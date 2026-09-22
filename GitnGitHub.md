@@ -4,7 +4,7 @@ Yi Fei Chung
 
 ## Table of Contents
 
-[What is Version Control and Git ?](#what-is-version-control-and-git-)  
+[What is Version Control and Git?](#what-is-version-control-and-git-)  
 [How to do Version Control?](#how-to-do-version-control-)  
 [The Pain! Prep work](#the-pain-prep-work)  
 [Make the local and the remote
@@ -19,7 +19,7 @@ workflows](#using-github-copilot-with-gitgithub-workflows)
 [Useful coding and GitHub
 resources](#useful-coding-and-github-resources)  
 
-## What is Version Control and Git ?
+## What is Version Control and Git?
 
 - Git is a version control system
 - “Track Changes” on steroids
