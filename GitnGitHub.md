@@ -4,8 +4,8 @@ Yi Fei Chung
 
 ## Table of Contents
 
-[What is Version Control and Git?](#what-is-version-control-and-git-)  
-[How to do Version Control?](#how-to-do-version-control-)  
+[What is Version Control and Git ?](#what-is-version-control-and-git-)  
+[How to do Version Control ?](#how-to-do-version-control-)  
 [The Pain! Prep work](#the-pain-prep-work)  
 [Make the local and the remote
 talk](#make-the-local-and-the-remote-talk)  
@@ -19,7 +19,7 @@ workflows](#using-github-copilot-with-gitgithub-workflows)
 [Useful coding and GitHub
 resources](#useful-coding-and-github-resources)  
 
-## What is Version Control and Git?
+## What is Version Control and Git ?
 
 - Git is a version control system
 - “Track Changes” on steroids
@@ -28,7 +28,7 @@ resources](#useful-coding-and-github-resources)
   - With peers
   - With past and future self
 
-## How to do Version Control?
+## How to do Version Control ?
 
 - Use a hosting service like **GitHub**, Bitbucket, and GitLab
 - Think of these as OneDrive, Google Drive or DropBox
